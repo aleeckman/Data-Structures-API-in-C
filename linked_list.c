@@ -25,6 +25,7 @@ void deleteDLL(dll* list) {
         current_node = current_node->next;
     }
     
+    list->tail = NULL;
     list->size = 0;
     
     free(list);
@@ -82,7 +83,7 @@ node* getNodeByValue(dll* list, void* data) {
         current_node = current_node->next;
     }
     
-    printf("Value not found in list.\n");
+    //printf("Value not found in list.\n");
     return NULL;
 }
 

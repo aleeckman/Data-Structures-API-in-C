@@ -8,48 +8,24 @@
 #include <stdio.h>
 #include <assert.h>
 #include "linked_list.h"
-
+#include "hashtable.h"
 
 
 int main(int argc, const char * argv[]) {
     
-    dll* new_dll = makeDLL();
-    insertHead(new_dll, "Hello");
-    insertTail(new_dll, "World");
-    insertNodeAtPos(new_dll, ",", 1);
-    insertNodeAtPos(new_dll, "New", 2);
-    insertTail(new_dll, "Remove Me #1");
-    insertNodeAtPos(new_dll, "Remove Me #2", 3);
-    toStringDLL(new_dll);
+    HashTable* table = createTable(50);
+    insert(table, "2", "0");
+    insert(table, "2", "2");
+    insert(table, "2", "6");
+    insert(table, "7", "1");
+    insert(table, "7", "4");
+    insert(table, "11", "3");
+    insert(table, "13", "5");
+    toStringHashTable(table);
     
-    removeTail(new_dll);
-    toStringDLL(new_dll);
-    
-    removeNodeByIndex(new_dll, 3);
-    removeNodeByValue(new_dll, ",");
-    toStringDLL(new_dll);
-    
-    char** array = createStringArrayFromDLL(new_dll);
-    for (int i = 0; i < new_dll->size; i++) {
-        printf("%s\n", array[i]);
-    }
-    printf("\n");
-    free(array);
-    
-    char* second_array[] = {"Hello", "New", "World", "!", "I AM", "BANA", "woo"};
-    dll* second_dll = createDLLFromCharArray(second_array, 7);
-    
-    toStringDLL(second_dll);
-    reverseDLL(second_dll);
-    toStringDLL(second_dll);
-    
-    deleteDLL(new_dll);
-    
-    dll* sorted_second_dll = mergeSortDLL(second_dll);
-    toStringDLL(sorted_second_dll);
-    
-    deleteDLL(second_dll);
-    
+    delete_item(table, "2");
+    delete_item(table, "11");
+    toStringHashTable(table);
     
     return 0;
 }
